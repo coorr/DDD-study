@@ -2,6 +2,7 @@ package study.querydsl.member.presentation.http;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,5 +29,12 @@ public class MemberQueryController {
                         .build()
         );
         return ResponseEntity.ok().body(result);
+    }
+
+    @GetMapping("/test")
+    public void getTest(ProviderDepthRequest dto, BindingResult bindingResult) {
+        System.out.println(bindingResult.hasErrors());
+        System.out.println(dto.getLevel());
+        System.out.println(dto.getStatuses());
     }
 }

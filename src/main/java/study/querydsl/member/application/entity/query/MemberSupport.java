@@ -22,9 +22,7 @@ public class MemberSupport extends MemberQueryDslRepositorySupport<Member> {
     public List<Member> findMemberTeamBy(MemberTeamQueryField field) {
         List<Member> result = this.getQueryFactory()
                 .selectFrom(m)
-                .innerJoin(t)
-                .on(m.team.id.eq(t.id))
-                .fetchJoin()
+                .join(m.team, t)
                 .fetch();
         return result;
 
